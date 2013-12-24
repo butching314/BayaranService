@@ -3,8 +3,9 @@
   <groupId>BayaranService</groupId>
   <artifactId>BayaranService</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <build>
+    <finalName>BayaranService</finalName>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>tst</testSourceDirectory>
     <plugins>
@@ -16,6 +17,30 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <plugin>            
+  		<groupId>org.apache.maven.plugins</groupId>
+  		<artifactId>maven-war-plugin</artifactId>
+  		<configuration>
+    	  <webXml>WebContent\WEB-INF\web.xml</webXml>
+    	  <webResources>
+            <resource>
+              <targetPath>WEB-INF</targetPath>
+              <directory>WebContent\resources</directory>
+              <includes>
+                  <include>*.xml</include>
+              </includes>
+            </resource>
+          </webResources>        
+  		</configuration>
+	  </plugin>
+	  <plugin>
+		<groupId>org.apache.tomcat.maven</groupId>
+         <artifactId>tomcat7-maven-plugin</artifactId>
+		<configuration>
+		  <server>tomcat7</server>
+		  <url>http://localhost:8080/manager/text</url>
+		</configuration>
+	  </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -25,5 +50,76 @@
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>15.0</version>
+    </dependency>
+   	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>3.1.2.RELEASE</version>
+	</dependency>
+	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+	<dependency>
+	    <!-- Required for Spring -->
+		<groupId>cglib</groupId>
+		<artifactId>cglib</artifactId>
+		<version>2.2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-server</artifactId>
+		<version>1.8</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sun.jersey.contribs</groupId>
+		<artifactId>jersey-spring</artifactId>
+		<version>1.8</version>
+		<exclusions>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	
+    <!-- MySQL database driver -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.9</version>
+	</dependency>
+ 
+	  <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-hibernate3</artifactId>
+        <version>2.0</version>
+      </dependency>
+	<dependency>
+		<groupId>javax.transaction</groupId>
+		<artifactId>jta</artifactId>
+		<version>1.1</version>
+	</dependency>
   </dependencies>
 </project>
