@@ -1,0 +1,4 @@
+AllUser: select user_id userId,
+                first_name firstName,
+                last_name lastName
+           from app_user

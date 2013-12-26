@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <properties>
-    <spring.version>3.1.2.RELEASE</spring.version>
+    <spring.version>4.0.0.RELEASE</spring.version>
   </properties>
   <build>
     <finalName>BayaranService</finalName>
@@ -38,6 +38,13 @@
               <directory>WebContent/resources</directory>
               <includes>
                   <include>log4j.properties</include>
+              </includes>
+            </resource>
+            <resource>
+              <targetPath>WEB-INF/classes/dao</targetPath>
+              <directory>WebContent/resources/dao</directory>
+              <includes>
+                  <include>*.yaml</include>
               </includes>
             </resource>
           </webResources>        
@@ -79,6 +86,11 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>15.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.yaml</groupId>
+		<artifactId>snakeyaml</artifactId>
+		<version>1.5</version>
     </dependency>
    	<dependency>
 		<groupId>org.springframework</groupId>
