@@ -6,7 +6,11 @@ public class DaoException extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public DaoException(Throwable throwable) {
+	public DaoException(final Throwable throwable) {
 		super(throwable);
+	}
+	
+	public DaoException(final String message) {
+		super(message);
 	}
 }

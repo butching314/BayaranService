@@ -1,0 +1,40 @@
+AllExpenses : > 
+    select 
+        e.trx_id,
+        e.trx_date,
+        e.amount,
+        e.store,
+        e.description,
+        e.remark,
+        e.payor_id
+    from
+        expense e
+    order by e.trx_date desc
+           
+AllExpenses.BeanMapping : 
+  trx_id : trxId
+  trx_date : trxDate
+  payor_id : userId
+  
+CreateExpense : >
+    insert into expense 
+        (trx_date, amount, store, description, remark, payor_id)
+    values 
+        (?, ?, ?, ?, ?, ?)
+
+LastInsertedExpense : > 
+    select 
+        e.trx_id,
+        e.trx_date,
+        e.amount,
+        e.store,
+        e.description,
+        e.remark,
+        e.payor_id
+    from expense e
+    where e.trx_id = LAST_INSERT_ID()
+
+LastInsertedExpense.BeanMapping : 
+  trx_id : trxId
+  trx_date : trxDate
+  payor_id : userId
